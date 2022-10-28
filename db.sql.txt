@@ -1,0 +1,89 @@
+------------------------------------------------------------------------------------------
+-- Table: public.videos
+------------------------------------------------------------------------------------------
+-- DROP TABLE IF EXISTS public.videos;
+
+CREATE TABLE IF NOT EXISTS public.videos
+(
+    id integer NOT NULL,
+    category_id integer NOT NULL,
+    title character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    description character varying(255) COLLATE pg_catalog."default",
+    video_url character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    thumb_url character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    view_count integer NOT NULL,
+    is_active boolean NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone,
+    CONSTRAINT videos_pkey PRIMARY KEY (id),
+    CONSTRAINT videos_title_unique UNIQUE (title)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.videos
+    OWNER to postgres;
+
+------------------------------------------------------------------------------------------
+-- Table: public.video_tags
+------------------------------------------------------------------------------------------
+-- DROP TABLE IF EXISTS public.video_tags;
+
+CREATE TABLE IF NOT EXISTS public.video_tags
+(
+    id integer NOT NULL,
+    video_id integer NOT NULL,
+    tag_id integer NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone,
+    CONSTRAINT video_tags_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.video_tags
+    OWNER to postgres;
+
+------------------------------------------------------------------------------------------
+-- Table: public.categories
+------------------------------------------------------------------------------------------
+-- DROP TABLE IF EXISTS public.categories;
+
+CREATE TABLE IF NOT EXISTS public.categories
+(
+    id integer NOT NULL,
+    title character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    is_active boolean NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone,
+    CONSTRAINT categories_pkey PRIMARY KEY (id),
+    CONSTRAINT categories_title_unique UNIQUE (title)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.categories
+    OWNER to postgres;
+
+------------------------------------------------------------------------------------------
+-- Table: public.tags
+------------------------------------------------------------------------------------------
+-- DROP TABLE IF EXISTS public.tags;
+
+CREATE TABLE IF NOT EXISTS public.tags
+(
+    id integer NOT NULL,
+    title character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    is_active boolean NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone,
+    CONSTRAINT tags_pkey PRIMARY KEY (id),
+    CONSTRAINT tags_title_unique UNIQUE (title)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.tags
+    OWNER to postgres;
+ 
+------------------------------------------------------------------------------------------
