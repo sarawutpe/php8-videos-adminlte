@@ -1,0 +1,10 @@
+{
+  // Set the default
+  "editor.formatOnSave": true,
+  // Enable per-language
+  "[php]": {
+    "editor.formatOnSave": true
+  },
+  "phpfmt.passes": [],
+  
+}
